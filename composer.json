@@ -1,0 +1,25 @@
+{
+    "name": "gravure/laravel-verification-tokens",
+    "description": "Generic verification library for Laravel with callback and events.",
+    "license": "MIT",
+    "require": {
+        "php": "^7.0",
+        "ramsey/uuid": "^3.6.0",
+        "illuminate/support": "^5.4",
+        "illuminate/database": "^5.4",
+        "illuminate/http": "^5.4",
+        "illuminate/routing": "^5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gravure\\Verification\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daniël Klabbers",
+            "email": "daniel+hyn@klabbers.email",
+            "homepage": "https://github.com/luceos"
+        }
+    ]
+}
