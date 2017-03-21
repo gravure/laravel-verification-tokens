@@ -13,8 +13,8 @@ composer require gravure/laravel-verification-tokens
 Register the service provider in your `config/app.php`:
 
 ```php
-    // Gravure verification token routes
-    Gravure\Verification\Providers\RouteProvider::class,
+    // Gravure verification tokens
+    Gravure\Verification\Providers\VerificationProvider::class,
 ```
 
 > The route provider register the callback handler, the route is named: `verification.callback`.
