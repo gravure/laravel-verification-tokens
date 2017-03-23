@@ -60,10 +60,10 @@ class Token extends Model
      * @param string $value
      * @return string
      */
-    public function getTokenAttribute(string $value)
+    public function getTokenAttribute(string $value = null)
     {
         if ($value === null) {
-            $value = static::$generator->generate();
+            $value = static::getGenerator()->generate();
         }
 
         return $value;
