@@ -16,11 +16,9 @@ class CallbackController extends Controller
      * @param Token $token
      * @return RedirectResponse|Response
      */
-    public function handle(Token $token)
+    public function handle($token)
     {
-        if (! $token->exists) {
-            throw new ModelNotFoundException(Token::class);
-        }
+        $token = Token::where('token', $token)->firstOrFail();
 
         if (! $token->send_at) {
             abort(403, "Token wasn't send yet.");
