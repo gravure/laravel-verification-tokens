@@ -2,6 +2,7 @@
 
 namespace Gravure\Verification\Controllers;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Gravure\Verification\Token;
@@ -17,7 +18,11 @@ class CallbackController extends Controller
      */
     public function handle(Token $token)
     {
-        if (!$token->send_at) {
+        if (! $token->exists) {
+            throw new ModelNotFoundException(Token::class);
+        }
+
+        if (! $token->send_at) {
             abort(403, "Token wasn't send yet.");
         }
 
