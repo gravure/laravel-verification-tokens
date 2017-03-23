@@ -30,12 +30,26 @@ class Token extends Model
     /**
      * @var array
      */
+    protected $fillable = ['token'];
+
+    /**
+     * @var array
+     */
     protected $dates = ['expires_at', 'send_at'];
 
     /**
      * @var Generator
      */
     protected static $generator;
+
+    public function __construct(array $attributes = [])
+    {
+        if (! in_array('token', $attributes)) {
+            $attributes['token'] = static::getGenerator()->generate();
+        }
+
+        parent::__construct($attributes);
+    }
 
     /**
      * @param string $value
@@ -52,21 +66,6 @@ class Token extends Model
         }
 
         throw new \InvalidArgumentException("Callback has to of format <class>@<method>");
-    }
-
-    /**
-     * Generates a random string if not set.
-     *
-     * @param string $value
-     * @return string
-     */
-    public function getTokenAttribute(string $value = null)
-    {
-        if ($value === null) {
-            $value = static::getGenerator()->generate();
-        }
-
-        return $value;
     }
 
     /**
